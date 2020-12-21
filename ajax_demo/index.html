@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+<title>My Cool AJAX Page | SHIVANSH ANAND</title>
+
+<style type="text/css">
+	
+	body {
+		margin : 0;
+		background-color: rgb(250,250,250);
+		font-family: sans-serif;
+	}
+	
+	table {
+		width : 90vw;
+		height : 180px;
+		margin : 24px auto;
+		background-color : rgb(255,255,255);
+		box-shadow : 0 6px 16px rgb(120,120,120);
+		border-radius : 16px; 
+	}
+	
+	table td {
+		padding : 4px;
+		text-align : center;
+	}
+	
+	table img {
+		display : block;
+		width : 100%;
+		height : 100%;
+		cursor : pointer;
+	}
+	
+	h3 {
+		width : 90vw;
+		margin : 48px auto 24px auto;
+	}
+	
+	#details {
+		width: 90vw;
+		margin: 0 auto;
+	}
+
+	#spin {
+		position: absolute;
+		top: 47.5vh;
+		left: 47.5vw;
+		width: 5vw;
+		height: 5vw;
+		min-width: 32px;
+		min-height: 32px;
+		visibility: hidden;
+	}
+	
+</style>
+
+<script type="text/javascript">
+
+	let didplay, head, spin;
+
+	function clearAndSpin() {
+		display.innerHTML = "";
+		head.innerHTML = "";
+		spin.style.visibility = "visible";
+	}
+	
+	function displayDetails() {
+		
+		if(this.readyState == 4 && this.status == 200) {
+
+			let obj = JSON.parse(this.responseText);
+			let nobj = Object.values(obj.query.pages)[0];
+
+			head.innerHTML = nobj.title;
+			display.innerHTML = nobj.extract;
+
+
+		} else if(this.status != 200) {
+			head.innerHTML = "ERROR CODE : " + this.status;
+		}
+
+		spin.style.visibility = "hidden";
+		
+	}
+	
+	function createRequest() {
+		
+		let req;
+		
+		try {
+			req = new XMLHttpRequest();
+		} catch(err) {
+			req = null;
+		}
+		
+		return req;
+		
+	}
+
+	function getDetails(self) {
+		
+		let pgArr = ["Mount_Everest", "Gomukh", "Tulip", "Rose"];
+		let page = pgArr[parseInt(self.id.charAt(self.id.length - 1)) - 1];
+		let url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&origin=*&titles=" + page;
+		
+		let req = createRequest();
+		
+		if(req != null) {
+			clearAndSpin();
+			req.open("GET", url, true);
+			req.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+			req.onreadystatechange = displayDetails;
+			req.send(null);
+		} else {
+			alert("Your browser doesn't supports AJAX :(");
+		}
+		
+		
+	}
+
+	function initPage() {
+		
+		let urlArr = ["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg/220px-Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg",
+			"https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/View_of_Gaumukh.jpg/220px-View_of_Gaumukh.jpg",
+			"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Holland_tulips.jpg/220px-Holland_tulips.jpg",
+			"https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Rose_flower_in_bundle.jpg/220px-Rose_flower_in_bundle.jpg"];
+			
+		for(let i=1; i<5; i++) {
+			let element = document.getElementById("img" + i);
+			element.setAttribute("src", urlArr[i-1]);		
+		}
+
+		head = document.getElementById("heading");
+		display = document.getElementById("details");
+		spin = document.getElementById("spin");
+	
+	}
+	
+	window.onload = initPage;
+
+</script>
+
+</head>
+
+<body>
+
+<table>
+	<tr>
+		<td>
+			<img id="img1" style="border-top-left-radius : 16px; border-bottom-left-radius : 16px;" onclick="getDetails(this)"/>
+		</td>
+		<td>
+			<img id="img2" onclick="getDetails(this)" />
+		</td>
+		<td>
+			<img id="img3" onclick="getDetails(this)" />
+		</td>
+		<td>
+			<img id="img4" style="border-top-right-radius : 16px; border-bottom-right-radius : 16px;" onclick="getDetails(this)"/>
+		</td>
+	</tr>
+</table>
+
+<h3 id="heading">Click on an image to see information about it</h3>
+
+<p id="details"></p>
+
+<img src="loader.gif" id="spin" />
+
+</body>
+</html>
