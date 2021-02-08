@@ -1,0 +1,407 @@
+<html>
+
+
+	<head>
+
+		<style type = "text/css">
+
+			@font-face {
+				font-family : futura-m;
+				src : url("assets/fonts/futura/futura-medium.ttf");
+			}
+
+			@font-face {
+				font-family : futura-h;
+				src : url("assets/fonts/futura/futura-heavy.ttf");
+			}
+
+			@font-face {
+				font-family : amiri-bi;
+				src : url("assets/fonts/Amiri/Amiri-BoldItalic.ttf");
+			}
+
+			:root {
+				--white : rgb(250, 250, 250);
+				--black : rgb(8, 8, 8);
+			}
+
+			body {
+				margin : 0;
+				padding : 0;
+				background : var(--white);
+				color : var(--black);
+				display: flex;
+				flex-flow: row nowrap;
+				align-items: stretch;
+				font-family: futura-m;
+				font-size: 18px;
+			}
+
+			body > main {
+				width : 55vw;
+				display: flex;
+				flex-flow: column-reverse nowrap;
+			}
+
+			body > section {
+				flex : 1;
+				background: var(--black);
+				color : var(--white);
+				display: flex;
+				flex-flow: column nowrap;
+				justify-content: center;
+				align-items: center;
+			}
+
+			body > section * {
+				margin : 0 64px;
+				text-align: left;
+			}
+
+			body > section p {
+				text-transform: capitalize;
+			}
+
+			body > section > div {
+				margin-bottom: 64px;
+				width: 60%;
+				height: 60%;
+				background: url("https://upload.wikimedia.org/wikipedia/commons/b/bc/Sir_Winston_Churchill_-_19086236948.jpg");
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center center;
+			}
+
+			h1, h2, h3 {
+				margin : 0;
+				padding : 0;
+			}
+
+			h3 {
+				font-size: 24px;
+			}
+
+			h1 { 
+				font-size: 96px;
+				margin : 120px 0 30px 0;
+			}
+
+			h2 {
+				font-size: 48px;
+			}
+
+			span {
+				font-size: 24px;
+			}
+
+			main > section {
+				flex : 1;
+				display: flex;
+				justify-content: center;
+				align-items:flex-start;
+				flex-flow: column nowrap;
+			}
+
+			main > section > div {
+				margin : 0 64px;
+			}
+
+			footer a {
+				display : inline-block;
+				margin : 24px; 0;
+				margin-left : 64px;
+				text-decoration: none;
+				text-transform: lowercase;
+				color : var(--black);
+				font-family: amiri-bi;
+				opacity: 1;
+				transition: opacity 250ms ease 0s;
+			}
+
+			footer a:hover {
+				opacity: 0.8;
+			}
+
+			.list-container {
+				width: 100vw;
+				height: 100vh;
+				background : rgb(0,0,0,0.12);
+				top : 0;
+				left : 0;
+				z-index: 2;
+				position: absolute;
+				text-transform: uppercase;
+				display: flex;
+				flex-flow: row nowrap;
+				justify-content: center;
+				align-items: center;
+				animation-name: opacity-changer;
+				animation-duration: 250ms;
+				animation-timing-function: ease-in;
+			}
+			
+			@keyframes opacity-changer {
+				from {
+					opacity : 0;
+				} to {
+					opacity: 1;
+				}
+			}
+			
+			.list-container ul {
+				background : rgb(250,250,250);
+				font-size: 24px;
+				border-radius: 8px;
+				list-style: none;
+				padding: 0;
+				padding: 32px;
+			}
+			
+			.list-container li:last-child {
+				color : red;
+				margin-top: 36px;
+				cursor: pointer;
+			}
+			
+			.list-container-invisible {
+				width: 0;
+				height: 0;
+			}
+
+
+
+		</style>
+
+		<script type="text/javascript">
+
+			const timeCon = {
+
+				todaysDate : new Date(),
+				birthDate : new Date("1999-05-22"),
+				retireDate : new Date("2070-05-22"),
+
+				getSpentDays : function() {
+					return Math.round((this.todaysDate - this.birthDate)/(1000 * 60 * 60 * 24));
+				},
+
+				getLeftDays : function() {
+					return Math.round((this.retireDate - this.todaysDate)/(1000 * 60 * 60 * 24));
+				},
+
+				getCardinalDate : function() {
+
+					let months = ["January","February","March","April","May","June","July",
+								  "August","September","October","November","December"];
+					let suffix = "th";
+
+					let dd = this.todaysDate.getDate();
+					let mm = this.todaysDate.getMonth();
+					let yy = this.todaysDate.getFullYear();
+
+					if(dd >= 11 && dd <=13) {
+						suffix = "th";
+					} else {
+						let ld = parseInt(dd%10);
+						if(ld == 1)
+							suffix = "st";
+						else if(ld == 2)
+							suffix = "nd";
+						else if(ld == 3)
+							suffix == "rd";
+						else
+							suffix = "th";
+					}
+
+					return `${dd}${suffix} ${months[mm]} , ${yy}`;
+
+				}
+
+			};
+
+			const media = {
+
+				fordQuotes : ["If a young man set's his mind to do anything , there's no limit to what he can't do"] ,
+
+				edisonQuotes : ["There is no substitute for hard work"] ,
+
+				winstonQuotes : ["Success is not final, failure is not fatal: it is the courage to continue that counts" , 
+								 "If you are going through hell, keep going",
+								 "Personally, I'm always ready to learn, although I do not always like being taught",
+								 "We make a living by what we get. We make a life by what we give."] ,
+
+				jobs_wozQuotes : ["Artists work best alone. Work alone",
+								  "Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose. You are already naked. There is no reason not to follow your heart.",
+								  "Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma - which is living with the results of other people's thinking. Don't let the noise of other's opinions drown out your own inner voice. And most important, have the courage to follow your heart and intuition. They somehow already know what you truly want to become. Everything else is secondary."],
+
+				unforgivenQuotes : ["We all have it coming kid"],
+
+				plcaeholderQuotes : ["Missison with ambition is the recipe of great work" , "Work is bliss"],
+
+				getMedia : function() {
+
+					let row = 0;
+					let col = 0;
+
+					let quotes = [this.fordQuotes , this.edisonQuotes , this.winstonQuotes , this.jobs_wozQuotes , this.unforgivenQuotes, this.plcaeholderQuotes];
+
+					let authors = ["Henry Ford" , "Thomas Edison" , "winston Chuchill" , "Two Steves" , "Unforgiven [1992]" , "Bliss"];
+
+					let imgs = [
+						"assets/imgs/great_people/ford.jpg" ,
+						"assets/imgs/great_people/edison.jpg" ,
+						"assets/imgs/great_people/winston.jpg" ,
+						"assets/imgs/great_people/jobs_woz.jpg" ,
+						"assets/imgs/great_people/eastwood_unforgiven.jpg" ,
+						"assets/imgs/great_people/placeholder.png"		
+					];
+
+
+					return function () {
+
+						if(col > quotes[row].length - 1) {
+							row++;
+							col = 0;
+						}
+
+						if(row > quotes.length - 1) {
+							row = 0;
+							col = 0;
+						}
+
+						let o = {
+							auth : authors[row],
+							quote : quotes[row][col],
+							img : imgs[row]
+						};
+
+						col++;
+
+						return o;
+
+					}
+
+
+				}
+
+
+			};
+
+			window.onload = () => {
+
+				let h1 = document.querySelector("h1");
+				let h2 = document.querySelector("h2");
+				let h3 = document.querySelector("h3");
+
+				let img = document.querySelector("body > section > div");
+				let p = document.querySelector("body > section > p");
+				let q = document.querySelector("body > section > q");
+
+				let footer = document.querySelector("footer");
+
+				h1.innerHTML = `${timeCon.getLeftDays()} <span>days left</span>`;
+				h2.innerHTML = `${timeCon.getSpentDays()} <span>days spent</span>`;
+				h3.textContent = timeCon.getCardinalDate();
+
+				let env = media.getMedia();
+
+				setInterval(() => {
+
+					let o = env();
+					img.style.backgroundImage = `url(${o.img})`;
+					q.innerHTML = `${o.quote}`;
+					p.innerHTML = `- ${o.auth}`;
+
+				}, 5000);
+
+				footer.onclick = () => {
+					
+					let menuContainer = document.createElement("div");
+					menuContainer.className = "list-container";
+					
+					let vices = ["discord trolling" , "instagram" , "time wastage"];
+					
+					let goals = ["mps" , "biz" , "movies" , "health" , "knowledge" , "explore"];
+					
+					let arr;
+					
+					arr = event.target.innerHTML === "vices" ? vices : goals;
+					
+					let list = document.createElement("ul");
+					
+					for(let i of arr) {
+						let em = document.createElement("li");
+						em.innerHTML = i;
+						list.appendChild(em);
+					}
+					
+					let last = document.createElement("li");
+					last.innerHTML = "close";
+					list.appendChild(last);
+					
+					menuContainer.onclick = () => {
+						if(event.target === last || event.target === menuContainer)
+							document.body.removeChild(menuContainer);
+					}
+					
+					menuContainer.appendChild(list);
+					
+					document.body.appendChild(menuContainer);
+					
+					
+					
+					
+				};
+
+
+			}
+
+
+		</script>
+
+	</head>
+
+	<body>
+		
+<!--		<div id = "list-container">-->
+<!--		</div>-->
+
+		<main>
+
+			<footer>
+
+				<a href = "#">vices</a>
+				<a href = "#">goals</a>
+
+			</footer>
+
+			<section>
+
+				<div>
+
+					<h3></h3>
+
+					<h1></h1>
+
+					<h2></h2>	
+
+				</div>
+
+			</section>
+
+
+		</main>
+
+		<section>
+
+			<div></div>
+
+			<q>For myself I am an optimist - it does not seem to be much use to be anything else.</q>
+
+			<p>winston churchill</p>
+
+		</section>
+
+	</body>
+
+
+</html>
