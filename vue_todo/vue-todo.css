@@ -152,6 +152,7 @@ li > div:first-child > input {
 
 #toast {
     position : fixed;
+    z-index : 5;
     bottom: 32px;
     flex-flow: row nowrap;
     justify-content: center;
