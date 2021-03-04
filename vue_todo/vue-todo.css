@@ -120,8 +120,12 @@ li > div:first-child > button:first-child {
     background-color : var(--dark-col-blue-btn);
 }
 
-li > div:first-child > button:first-child::before {
+.checked::before {
     content: "\2713";
+}
+
+.undo::before {
+    content: "\27F2";
 }
 
 li > div:first-child > button:last-child {
@@ -146,13 +150,9 @@ li > div:first-child > input {
     text-decoration: line-through;
 }
 
-.mark-complete > button:first-child {
-    background-color : red;
-}
-
 #toast {
     position : fixed;
-    z-index : 5;
+    z-index: 5;
     bottom: 32px;
     flex-flow: row nowrap;
     justify-content: center;
