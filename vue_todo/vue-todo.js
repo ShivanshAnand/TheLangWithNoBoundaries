@@ -12,7 +12,8 @@ let vm = new Vue({
                 disabled : true,
                 mClass : {
                     "mark-complete" : false,
-                }
+                },
+                btnToggle : true
             }
             this.items.push(item);
             this.currText = "";
@@ -26,6 +27,7 @@ let vm = new Vue({
             let e = this.items[i];
             e.completed = !e.completed;
             e.mClass["mark-complete"] = !e.mClass["mark-complete"];
+            e.btnToggle = !e.btnToggle;
             showToast(e.completed ? "Task completed !" : "Undoing ..." , 1000);
         },
         makeEditable : function(i) {
