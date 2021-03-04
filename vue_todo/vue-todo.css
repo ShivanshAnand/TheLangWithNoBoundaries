@@ -1,0 +1,206 @@
+:root {
+    --dark-col-bg : #06070D;
+    --dark-col-fg : #161A1F;
+    --dark-col-text-main : #F2F2F2;
+    --dark-col-grad-start : #07EB83;
+    --dark-col-grad-end : #4BDDBC;
+    --dark-col-blue-btn : #7579FF;
+    --dark-col-red-btn : #FF4130;
+    --dark-col-shadow : #000000;
+
+    --base-vert-margin : 18px;
+
+    font-size : 18px;
+}
+
+@media only screen and (min-width : 1px) {
+    main {
+        width : 95vw;
+    }
+}
+
+@media only screen and (min-width : 640px) {
+    main {
+        width : 90vw;
+    }
+}
+
+@media only screen and (min-width : 720px) {
+    main {
+        width : 80vw;
+    }
+}
+
+@media only screen and (min-width : 1000px) {
+    main {
+        width : 60vw;
+    }
+}
+
+body {
+    margin : 0;
+    padding : 0;
+    background-color : var(--dark-col-bg);
+    color : var(--dark-col-text-main);
+    font-family: sans-serif;
+    scrollbar-width : 12px;
+    scrollbar-color : dark;
+}
+
+main {
+    margin : calc(var(--base-vert-margin) * 2.25) auto;
+}
+
+h1 {
+    padding : 0;
+    margin : 0;
+    font-size: 2rem;
+}
+
+main > div:first-of-type {
+    margin : calc(var(--base-vert-margin) * 1.5) auto;
+    width : 100%;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+}
+
+main > div:first-of-type input , button {
+    font-size: 1.2rem;
+    padding : 10px 22px;
+    color : var(--dark-col-text-main);
+    outline : none;
+    border : none;
+    font-weight: bold;
+    border-radius: 0;
+    display: block;
+}
+
+main > div:first-of-type > button {
+    margin-left : 6px;
+    font-weight: bold;
+    background-image : linear-gradient(60deg , var(--dark-col-grad-start) , var(--dark-col-grad-end));
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px var(--dark-col-shadow);
+}
+
+main > div:first-of-type > input[type = "text"] {
+    flex : 1;
+    background-color: var(--dark-col-fg);
+    box-shadow: 0 4px 8px var(--dark-col-shadow);
+}
+
+ul {
+    list-style: none;
+    padding : 0;
+}
+
+li {
+    margin : calc(var(--base-vert-margin) * 1) auto;
+}
+
+li > div:first-child {
+    width : 100%;
+    height : auto;
+    box-sizing: border-box;
+    background-color : var(--dark-col-fg);
+    font-size: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    outline : none;
+    border : none;
+}
+
+li > div:first-child > button {
+    text-transform: uppercase;
+    padding : 10px 22px;
+}
+
+li > div:first-child > button:first-child {
+    background-color : var(--dark-col-blue-btn);
+}
+
+li > div:first-child > button:first-child::before {
+    content: "\2713";
+}
+
+li > div:first-child > button:last-child {
+    background-color : var(--dark-col-red-btn );
+}
+
+
+li > div:first-child > input {
+    flex : 1;
+    margin : 0;
+    font-size : 1.2rem;
+    padding : 10px 12px;
+    overflow: auto;
+    background-color: var(--dark-col-fg);
+    outline : none;
+    border : none;
+    color : var(--dark-col-text-main);
+
+}
+
+.mark-complete input {
+    text-decoration: line-through;
+}
+
+.mark-complete > button:first-child {
+    background-color : red;
+}
+
+#toast {
+    position : fixed;
+    bottom: 32px;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width : 100%;
+    display: flex;
+    transition : all 500ms ease 0s;
+}
+
+#toast > p {
+    background-color: var(--dark-col-fg);
+    box-shadow: 0 4px 8px var(--dark-col-shadow);
+    display: inline-block;
+    max-width: 80vw;
+    padding: 12px 22px;
+    border-radius: 9999px;
+}
+
+.op-0 {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.op-1 {
+    visibility: visible;
+    opacity: 1;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: var(--dark-col-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--dark-col-fg);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-col-blue-btn);
+}
+
+#info-btn {
+    background-color : var(--dark-col-blue-btn);
+    background-image: url("help_outline-black-18dp.svg");
+    background-size: contain;
+    width : 48px;
+    height : 48px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    box-shadow: 0 4px 8px var(--dark-col-shadow);
+}

@@ -1,0 +1,49 @@
+<html>
+
+    <head>
+        
+        <link href = "vue-todo.css" rel = "stylesheet"  />
+        <script defer src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <script defer type = "text/javascript" src = "vue-todo.js"></script>
+
+    </head>
+
+    <body>
+
+        <main id = "main">
+
+            <h1>Vue Todo</h1>
+
+            <div id = "inp-container">
+
+                <button v-on:click = "addItem">add todo</button>
+                <input type = "text" v-bind:placeholder = "placeholder" v-model.lazy = "currText" v-on:keyup.enter = "addItem"/>
+
+            </div>
+
+            <ul>
+
+                <li v-for = "(e , i) of items" v-bind:key = "i">
+                    <div v-bind:class = "e.mClass" tabindex="-1" v-on:dblclick = "makeEditable(i)">
+                        <button v-on:click = "markAsCompleted(i , $event)"></button>
+                        <input type = "text" v-bind:disabled = "e.disabled" v-on:blur = "makeStatic(i)" v-model.lazy = "e.text"/>
+                        <button v-on:click = "removeItem(i)">&#10006;</button>
+                    </div>
+                </li>   
+
+            </ul>
+
+
+        </main>
+        
+        <div id = "toast" class="op-0">
+            <p>Some msg in here</p>
+        </div>
+        
+        <a id = "info-btn" href = "#" v-on:click.prevent = "clicked">
+            
+        </a>
+
+    </body>
+
+</html>
