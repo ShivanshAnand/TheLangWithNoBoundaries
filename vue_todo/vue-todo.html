@@ -25,7 +25,7 @@
 
                 <li v-for = "(e , i) of items" v-bind:key = "i">
                     <div v-bind:class = "e.mClass" tabindex="-1" v-on:dblclick = "makeEditable(i)">
-                        <button v-on:click = "markAsCompleted(i , $event)"></button>
+                        <button v-on:click = "markAsCompleted(i , $event)" v-bind:class = "{'checked' : e.btnToggle , 'undo' : !e.btnToggle}"></button>
                         <input type = "text" v-bind:disabled = "e.disabled" v-on:blur = "makeStatic(i)" v-model.lazy = "e.text"/>
                         <button v-on:click = "removeItem(i)">&#10006;</button>
                     </div>
