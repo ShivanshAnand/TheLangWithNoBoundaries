@@ -6,7 +6,12 @@ let vm = new Vue({
     },
     methods : {
         addItem : function() {
+            if(this.currText.length <= 0) {
+                showToast("Can't add an empty item :(" , 1000);
+                return;
+            }
             let item = {
+                cc : new Date().getTime(),
                 text : this.currText,
                 completed : false,
                 disabled : true,
