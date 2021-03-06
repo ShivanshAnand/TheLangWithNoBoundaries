@@ -17,11 +17,11 @@
     main {
         width : 95vw;
     }
-    
+
     #inp-container > button::before {
         content : "add";
     }
-    
+
 }
 
 @media only screen and (min-width : 640px) {
@@ -212,4 +212,23 @@ li > div:first-child > input {
     bottom: 32px;
     right: 32px;
     box-shadow: 0 4px 8px var(--dark-col-shadow);
+}
+
+.fade-enter-active , .fade-leave-active{
+    transition: all 250ms ease-out 0s;
+}
+
+.fade-enter {
+    transform: scaleX(1.5);
+    opacity : 0;
+}
+
+.fade-enter-to , .fade-leave{
+    transform: scaleX(1);
+    opacity : 1;
+}
+
+.fade-leave-to {
+    transform: scaleX(0.5);
+    opacity : 0;  
 }
